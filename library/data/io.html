@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>data.io — Input/Output Algorithms &mdash; PySAT</title>
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../_static/css/spc-extend.css">
+    <link rel="stylesheet" href="../../_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/js/copybutton.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" >
+    <link rel="search" title="Search" href="../../search.html" >
+    <link rel="top" title="PySAT" href="../../index.html" >
+    <link rel="up" title="data — Base Data Structures" href="index.html" >
+    <link rel="next" title="spectral — Derived Data Products" href="../derived/index.html" >
+    <link rel="prev" title="spectra.hcube — HyperSpectral Cube Data Structure" href="hcube.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+	
+        <li class="active"><a href="../../index.html">PySAT</a></li>
+	
+          <li class="active"><a href="../index.html" >Library Reference</a></li>
+          <li class="active"><a href="index.html" accesskey="U"><code class="docutils literal"><span class="pre">data</span></code> — Base Data Structures</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="../../genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="../../py-modindex.html" title="Python Module Index"
+           >modules</a>
+      </li>
+      <li class="active">
+        <a href="../derived/index.html" title="spectral — Derived Data Products"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="hcube.html" title="spectra.hcube — HyperSpectral Cube Data Structure"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/favicon.png" alt="Logo">
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="hcube.html"
+                        title="previous chapter"><code class="docutils literal"><span class="pre">spectra.hcube</span></code> — HyperSpectral Cube Data Structure</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../derived/index.html"
+                        title="next chapter"><code class="docutils literal"><span class="pre">spectral</span></code> — Derived Data Products</a></p>
+  <h3>This Page</h3>
+  <div>
+    <a href="../../_sources/library/data/io.rst.txt"
+       rel="nofollow">Show Source</a>
+  </div>
+<div class="this-page-menu">
+  <a href="/scipy/docs/scipy-docs/library/data/io.rst.rst">Edit page</a>
+</div>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="data-io-input-output-algorithms">
+<h1><code class="xref py py-mod docutils literal"><span class="pre">data.io</span></code> — Input/Output Algorithms<a class="headerlink" href="#data-io-input-output-algorithms" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="xref py py-mod docutils literal"><span class="pre">data.io</span></code> module</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.1.0.</span></p>
+</div>
+<span class="target" id="module-libpysat.data.io"></span><dl class="function">
+<dt id="libpysat.data.io.m3">
+<code class="descclassname">libpysat.data.io.</code><code class="descname">m3</code><span class="sig-paren">(</span><em>f</em>, <em>tolerance=2</em>, <em>waxis=0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libpysat/data/io.html#m3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.data.io.m3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate DataFrame from spectral profiler data.
+:param f: file path to spectral profiler file
+:type f: str
+:param tolerance: Tolerance for floating point index
+:type tolerance: Real</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.data.io.spectral_profiler">
+<code class="descclassname">libpysat.data.io.</code><code class="descname">spectral_profiler</code><span class="sig-paren">(</span><em>f</em>, <em>tolerance=1</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libpysat/data/io.html#spectral_profiler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.data.io.spectral_profiler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate DataFrame from spectral profiler data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>f</strong> (<em>str</em>) – file path to spectral profiler file</li>
+<li><strong>tolerance</strong> (<em>Real</em>) – Tolerance for floating point index</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2018 - PySAT Developers.
+      </li>
+      <li>
+      Last updated on Jan 31, 2018.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.6.6.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

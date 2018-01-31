@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>libpysat.utils.utils &mdash; PySAT</title>
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/spc-extend.css">
+    <link rel="stylesheet" href="../../../_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/js/copybutton.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" >
+    <link rel="search" title="Search" href="../../../search.html" >
+    <link rel="top" title="PySAT" href="../../../index.html" >
+    <link rel="up" title="Module code" href="../../index.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+	
+        <li class="active"><a href="../../../index.html">PySAT</a></li>
+	
+          <li class="active"><a href="../../index.html" accesskey="U">Module code</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="../../../genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="../../../py-modindex.html" title="Python Module Index"
+           >modules</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/favicon.png" alt="Logo">
+            </a></p>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <h1>Source code for libpysat.utils.utils</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">reduce</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">singledispatch</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">update_wrapper</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">ss</span>
+
+
+<div class="viewcode-block" id="method_singledispatch"><a class="viewcode-back" href="../../../library/utils/utils.html#libpysat.utils.utils.method_singledispatch">[docs]</a><span class="k">def</span> <span class="nf">method_singledispatch</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    New dispatch decorator that looks at the second argument to</span>
+<span class="sd">    avoid self</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    func : Object</span>
+<span class="sd">        Function object to be dispatched</span>
+<span class="sd">    Returns</span>
+<span class="sd">    wrapper : Object</span>
+<span class="sd">        Wrapped function call chosen by the dispatcher</span>
+<span class="sd">    ----------</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dispatcher</span> <span class="o">=</span> <span class="n">singledispatch</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">dispatcher</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+
+    <span class="n">wrapper</span><span class="o">.</span><span class="n">register</span> <span class="o">=</span> <span class="n">dispatcher</span><span class="o">.</span><span class="n">register</span>
+    <span class="n">update_wrapper</span><span class="p">(</span><span class="n">wrapper</span><span class="p">,</span> <span class="n">dispatcher</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wrapper</span></div>
+
+
+<div class="viewcode-block" id="crossform"><a class="viewcode-back" href="../../../library/utils/utils.html#libpysat.utils.utils.crossform">[docs]</a><span class="k">def</span> <span class="nf">crossform</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the cross form, e.g. a in the cross product of a b.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a : ndarray</span>
+<span class="sd">        (3,) vector</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    a : ndarray</span>
+<span class="sd">        (3,3)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
+                     <span class="p">[</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
+                     <span class="p">[</span><span class="o">-</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">]])</span></div>
+
+
+<div class="viewcode-block" id="normalize_vector"><a class="viewcode-back" href="../../../library/utils/utils.html#libpysat.utils.utils.normalize_vector">[docs]</a><span class="k">def</span> <span class="nf">normalize_vector</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Normalize a standard form line</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    line : ndarray</span>
+<span class="sd">           Standard form of a line (Ax + By + C = 0)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    line : ndarray</span>
+<span class="sd">           The normalized line</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; x = np.random.random((3,3))</span>
+<span class="sd">    &gt;&gt;&gt; normalize_vector(x)</span>
+<span class="sd">    array([[ 0.88280225,  0.4697448 ,  0.11460811],</span>
+<span class="sd">       [ 0.26090555,  0.96536433,  0.91648305],</span>
+<span class="sd">       [ 0.58271501,  0.81267657,  0.30796395]])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">values</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">line</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">line</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span> <span class="o">/</span> <span class="n">n</span>
+    <span class="k">return</span> <span class="n">line</span></div>
+
+
+<div class="viewcode-block" id="getnearest"><a class="viewcode-back" href="../../../library/utils/utils.html#libpysat.utils.utils.getnearest">[docs]</a><span class="k">def</span> <span class="nf">getnearest</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given an iterable, get the index nearest to the input value</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    iterable : iterable</span>
+<span class="sd">               An iterable to search</span>
+
+<span class="sd">    value : int, float</span>
+<span class="sd">            The value to search for</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        : int</span>
+<span class="sd">          The index into the list</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">iterable</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">value</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="checkbandnumbers"><a class="viewcode-back" href="../../../library/utils/utils.html#libpysat.utils.utils.checkbandnumbers">[docs]</a><span class="k">def</span> <span class="nf">checkbandnumbers</span><span class="p">(</span><span class="n">bands</span><span class="p">,</span> <span class="n">checkbands</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a list of input bands, check that the passed</span>
+<span class="sd">    tuple contains those bands.</span>
+
+<span class="sd">    In case of THEMIS, we check for band 9 as band 9 is the temperature</span>
+<span class="sd">    band required to derive thermal temperature.  We also check for band 10</span>
+<span class="sd">    which is required for TES atmosphere calculations.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    bands : tuple</span>
+<span class="sd">            of bands in the input image</span>
+<span class="sd">    checkbands : list</span>
+<span class="sd">                 of bands to check against</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : bool</span>
+<span class="sd">       True if the bands are present, else False</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">checkbands</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">bands</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="checkdeplaid"><a class="viewcode-back" href="../../../library/utils/utils.html#libpysat.utils.utils.checkdeplaid">[docs]</a><span class="k">def</span> <span class="nf">checkdeplaid</span><span class="p">(</span><span class="n">incidence</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given an incidence angle, select the appropriate deplaid method.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    incidence : float</span>
+<span class="sd">                incidence angle extracted from the campt results.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">incidence</span> <span class="o">&gt;=</span> <span class="mi">95</span> <span class="ow">and</span> <span class="n">incidence</span> <span class="o">&lt;=</span> <span class="mi">180</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;night&#39;</span>
+    <span class="k">elif</span> <span class="n">incidence</span> <span class="o">&gt;=</span> <span class="mi">90</span> <span class="ow">and</span> <span class="n">incidence</span> <span class="o">&lt;</span> <span class="mi">95</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;night&#39;</span>
+    <span class="k">elif</span> <span class="n">incidence</span> <span class="o">&gt;=</span> <span class="mi">85</span> <span class="ow">and</span> <span class="n">incidence</span> <span class="o">&lt;</span> <span class="mi">90</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;day&#39;</span>
+    <span class="k">elif</span> <span class="n">incidence</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">incidence</span> <span class="o">&lt;</span> <span class="mi">85</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;day&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="checkmonotonic"><a class="viewcode-back" href="../../../library/utils/utils.html#libpysat.utils.utils.checkmonotonic">[docs]</a><span class="k">def</span> <span class="nf">checkmonotonic</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">piecewise</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check if a given iterable is monotonically increasing.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    iterable : iterable</span>
+<span class="sd">                Any Python iterable object</span>
+
+<span class="sd">    piecewise : boolean</span>
+<span class="sd">                If false, return a boolean for the entire iterable,</span>
+<span class="sd">                else return a list with elementwise monotinicy checks</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    monotonic : bool/list</span>
+<span class="sd">                A boolean list of all True if monotonic, or including</span>
+<span class="sd">                an inflection point</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">monotonic</span> <span class="o">=</span> <span class="p">[</span><span class="kc">True</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">iterable</span><span class="p">[</span><span class="mi">1</span><span class="p">:])]</span>
+    <span class="k">if</span> <span class="n">piecewise</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">monotonic</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="n">monotonic</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="find_in_dict"><a class="viewcode-back" href="../../../library/utils/utils.html#libpysat.utils.utils.find_in_dict">[docs]</a><span class="k">def</span> <span class="nf">find_in_dict</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Recursively find an entry in a dictionary</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : dict</span>
+<span class="sd">          The dictionary to search</span>
+<span class="sd">    key : str</span>
+<span class="sd">          The key to find in the dictionary</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    item : obj</span>
+<span class="sd">           The value from the dictionary</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">obj</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="n">item</span> <span class="o">=</span> <span class="n">find_in_dict</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">item</span></div>
+
+
+<div class="viewcode-block" id="find_nested_in_dict"><a class="viewcode-back" href="../../../library/utils/utils.html#libpysat.utils.utils.find_nested_in_dict">[docs]</a><span class="k">def</span> <span class="nf">find_nested_in_dict</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">key_list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Traverse a list of keys into a dict.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : dict</span>
+<span class="sd">           The dictionary to be traversed</span>
+<span class="sd">    key_list: list</span>
+<span class="sd">              The list of keys to be travered.  Keys are</span>
+<span class="sd">              traversed in the order they are entered in</span>
+<span class="sd">              the list</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    value : object</span>
+<span class="sd">            The value in the dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">d</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">key_list</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="make_homogeneous"><a class="viewcode-back" href="../../../library/utils/utils.html#libpysat.utils.utils.make_homogeneous">[docs]</a><span class="k">def</span> <span class="nf">make_homogeneous</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert a set of points (n x dim array) to</span>
+<span class="sd">        homogeneous coordinates.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    points : ndarray</span>
+<span class="sd">             n x m array of points, where n is the number</span>
+<span class="sd">             of points.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       n x m + 1 array of homogeneous points</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">points</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">))))</span></div>
+
+
+<div class="viewcode-block" id="remove_field_name"><a class="viewcode-back" href="../../../library/utils/utils.html#libpysat.utils.utils.remove_field_name">[docs]</a><span class="k">def</span> <span class="nf">remove_field_name</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a numpy structured array, remove a column and return</span>
+<span class="sd">    a copy of the remainder of the array</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a : ndarray</span>
+<span class="sd">        Numpy structured array</span>
+
+<span class="sd">    name : str</span>
+<span class="sd">           of the index (column) to be removed</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    b : ndarray</span>
+<span class="sd">        Numpy structured array with the &#39;name&#39; column removed</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">names</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+        <span class="n">names</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">names</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">b</span></div>
+
+
+
+<div class="viewcode-block" id="generic_func"><a class="viewcode-back" href="../../../library/utils/utils.html#libpysat.utils.utils.generic_func">[docs]</a><span class="k">def</span> <span class="nf">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Using some form of data and a wavelength array. Get the bands associated</span>
+<span class="sd">    wtih each wavelength in wavelengths, create a subset of bands based off</span>
+<span class="sd">    of those wavelengths then hand the subset to the function.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (x, y, z) 3 dimensional numpy array of a spectra image</span>
+
+<span class="sd">    wv_array : iterable</span>
+<span class="sd">               A list of all possible wavelengths for a given spectral image</span>
+
+<span class="sd">    wavelengths : iterable</span>
+<span class="sd">                  List of wavelengths to use for the function</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    ----------</span>
+<span class="sd">    : func</span>
+<span class="sd">      Returns the result from the given function</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">subset</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">[</span><span class="n">wavelengths</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
+    <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">subset</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="get_band_numbers"><a class="viewcode-back" href="../../../library/utils/utils.html#libpysat.utils.utils.get_band_numbers">[docs]</a><span class="k">def</span> <span class="nf">get_band_numbers</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span> <span class="n">wave_values</span><span class="p">,</span> <span class="n">tolerance</span> <span class="o">=</span> <span class="o">.</span><span class="mi">01</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    This parses the wavelenth list,finds the mean wavelength closest to the</span>
+<span class="sd">    provided wavelength, and returns the index of that value.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    wavelengths : list</span>
+<span class="sd">                  A list of wavelengths, 0 based indexing</span>
+
+<span class="sd">    wave_values : list</span>
+<span class="sd">                  A list of input wavelengths to map to bands</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    bands : list</span>
+<span class="sd">            A variable length list of bands.  These are in the same order they are</span>
+<span class="sd">            provided in.  Beware that altering the order will cause unexpected results.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">bands</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">wave_values</span><span class="p">:</span>
+        <span class="n">bands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">))[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bands</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">bands</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">bands</span></div>
+</pre></div>
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2018 - PySAT Developers.
+      </li>
+      <li>
+      Last updated on Jan 31, 2018.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.6.6.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

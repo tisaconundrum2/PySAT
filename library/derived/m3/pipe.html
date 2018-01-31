@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>derived.m3.pipe — M3 Pipe Algorithms &mdash; PySAT</title>
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/spc-extend.css">
+    <link rel="stylesheet" href="../../../_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/js/copybutton.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" >
+    <link rel="search" title="Search" href="../../../search.html" >
+    <link rel="top" title="PySAT" href="../../../index.html" >
+    <link rel="up" title="derived.m3 — Moone Minerology Mapper Derived Data Products" href="index.html" >
+    <link rel="next" title="derived.crism — CRISM Derived Data Products" href="../crism/index.html" >
+    <link rel="prev" title="derived.m3.new — M3 New Algorithms" href="new.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+	
+        <li class="active"><a href="../../../index.html">PySAT</a></li>
+	
+          <li class="active"><a href="../../index.html" >Library Reference</a></li>
+          <li class="active"><a href="../index.html" ><code class="docutils literal"><span class="pre">spectral</span></code> — Derived Data Products</a></li>
+          <li class="active"><a href="index.html" accesskey="U"><code class="docutils literal"><span class="pre">derived.m3</span></code> — Moone Minerology Mapper Derived Data Products</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="../../../genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="../../../py-modindex.html" title="Python Module Index"
+           >modules</a>
+      </li>
+      <li class="active">
+        <a href="../crism/index.html" title="derived.crism — CRISM Derived Data Products"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="new.html" title="derived.m3.new — M3 New Algorithms"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/favicon.png" alt="Logo">
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="new.html"
+                        title="previous chapter"><code class="docutils literal"><span class="pre">derived.m3.new</span></code> — M3 New Algorithms</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../crism/index.html"
+                        title="next chapter"><code class="docutils literal"><span class="pre">derived.crism</span></code> — CRISM Derived Data Products</a></p>
+  <h3>This Page</h3>
+  <div>
+    <a href="../../../_sources/library/derived/m3/pipe.rst.txt"
+       rel="nofollow">Show Source</a>
+  </div>
+<div class="this-page-menu">
+  <a href="/scipy/docs/scipy-docs/library/derived/m3/pipe.rst.rst">Edit page</a>
+</div>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="derived-m3-pipe-m3-pipe-algorithms">
+<h1><code class="xref py py-mod docutils literal"><span class="pre">derived.m3.pipe</span></code> — M3 Pipe Algorithms<a class="headerlink" href="#derived-m3-pipe-m3-pipe-algorithms" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="xref py py-mod docutils literal"><span class="pre">derived.m3.pipe</span></code> module</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.1.0.</span></p>
+</div>
+<span class="target" id="module-libpysat.derived.m3.pipe"></span><dl class="function">
+<dt id="libpysat.derived.m3.pipe.bd1900">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">bd1900</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#bd1900"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.bd1900" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.derived.m3.pipe.bd2300">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">bd2300</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#bd2300"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.bd2300" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.derived.m3.pipe.bd620">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">bd620</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#bd620"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.bd620" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.derived.m3.pipe.bdi1000">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">bdi1000</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#bdi1000"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.bdi1000" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.derived.m3.pipe.bdi2000">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">bdi2000</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#bdi2000"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.bdi2000" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.derived.m3.pipe.bdi_generic">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">bdi_generic</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em>, <em>upper_limit</em>, <em>initial_band</em>, <em>step</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#bdi_generic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.bdi_generic" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+<li><strong>upper_limit</strong> (<em>int</em>) – Upper limit on the number of wavelengths to be used</li>
+<li><strong>initial_band</strong> (<em>int</em>) – The band to use as a starting point to extract the other
+0 to upper_limit bands</li>
+<li><strong>step</strong> (<em>int</em>) – The step size inbetween the 0 to upper limit bands</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.derived.m3.pipe.calc_bdi_band">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">calc_bdi_band</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em>, <em>iteration</em>, <em>initial_band</em>, <em>step</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#calc_bdi_band"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.calc_bdi_band" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+<li><strong>iteration</strong> (<em>int</em>) – Number of steps to add to the new band calculation</li>
+<li><strong>initial_band</strong> (<em>int</em>) – Initial band to use to calculate the new band</li>
+<li><strong>step</strong> (<em>int</em>) – Length between bands to calculate</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.derived.m3.pipe.h2o1">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">h2o1</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#h2o1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.h2o1" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.derived.m3.pipe.iralbedo">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">iralbedo</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#iralbedo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.iralbedo" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.derived.m3.pipe.mafic_abs">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">mafic_abs</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#mafic_abs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.mafic_abs" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.derived.m3.pipe.olindex">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">olindex</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#olindex"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.olindex" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.derived.m3.pipe.omh">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">omh</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#omh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.omh" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.derived.m3.pipe.oneum_min">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">oneum_min</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#oneum_min"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.oneum_min" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.derived.m3.pipe.oneum_slope">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">oneum_slope</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#oneum_slope"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.oneum_slope" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.derived.m3.pipe.reflectance1">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">reflectance1</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#reflectance1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.reflectance1" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.derived.m3.pipe.reflectance2">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">reflectance2</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#reflectance2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.reflectance2" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.derived.m3.pipe.reflectance3">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">reflectance3</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#reflectance3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.reflectance3" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.derived.m3.pipe.reflectance4">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">reflectance4</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#reflectance4"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.reflectance4" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.derived.m3.pipe.thermal_ratio">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">thermal_ratio</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#thermal_ratio"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.thermal_ratio" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.derived.m3.pipe.thermal_slope">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">thermal_slope</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#thermal_slope"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.thermal_slope" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.derived.m3.pipe.twoum_ratio">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">twoum_ratio</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#twoum_ratio"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.twoum_ratio" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.derived.m3.pipe.twoum_slope">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">twoum_slope</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#twoum_slope"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.twoum_slope" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.derived.m3.pipe.uvvis">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">uvvis</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#uvvis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.uvvis" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.derived.m3.pipe.visnir">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">visnir</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#visnir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.visnir" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.derived.m3.pipe.visslope">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">visslope</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#visslope"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.visslope" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.derived.m3.pipe.visuv">
+<code class="descclassname">libpysat.derived.m3.pipe.</code><code class="descname">visuv</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/libpysat/derived/m3/pipe.html#visuv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.derived.m3.pipe.visuv" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (n,m,p) array</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – (n,1) array of wavelengths that correspond to the p
+dimension of the data array</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the processed ndarray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2018 - PySAT Developers.
+      </li>
+      <li>
+      Last updated on Jan 31, 2018.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.6.6.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

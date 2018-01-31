@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>libpysat.data.io &mdash; PySAT</title>
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/spc-extend.css">
+    <link rel="stylesheet" href="../../../_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/js/copybutton.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" >
+    <link rel="search" title="Search" href="../../../search.html" >
+    <link rel="top" title="PySAT" href="../../../index.html" >
+    <link rel="up" title="Module code" href="../../index.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+	
+        <li class="active"><a href="../../../index.html">PySAT</a></li>
+	
+          <li class="active"><a href="../../index.html" accesskey="U">Module code</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="../../../genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="../../../py-modindex.html" title="Python Module Index"
+           >modules</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/favicon.png" alt="Logo">
+            </a></p>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <h1>Source code for libpysat.data.io</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">plio.io</span> <span class="k">import</span> <span class="n">io_spectral_profiler</span><span class="p">,</span> <span class="n">io_moon_minerology_mapper</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">hcube</span> <span class="k">as</span> <span class="n">hc</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">spectra</span> <span class="k">as</span> <span class="n">sp</span>
+
+
+<div class="viewcode-block" id="spectral_profiler"><a class="viewcode-back" href="../../../library/data/io.html#libpysat.data.io.spectral_profiler">[docs]</a><span class="k">def</span> <span class="nf">spectral_profiler</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate DataFrame from spectral profiler data.</span>
+
+<span class="sd">        parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        f : str</span>
+<span class="sd">            file path to spectral profiler file</span>
+
+<span class="sd">        tolerance : Real</span>
+<span class="sd">                    Tolerance for floating point index</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">geo_data</span> <span class="o">=</span> <span class="n">io_spectral_profiler</span><span class="o">.</span><span class="n">Spectral_Profiler</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">meta</span> <span class="o">=</span> <span class="n">geo_data</span><span class="o">.</span><span class="n">ancillary_data</span>
+
+        <span class="n">df</span> <span class="o">=</span> <span class="n">geo_data</span><span class="o">.</span><span class="n">spectra</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">swaplevel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;minor&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">]</span>
+        <span class="n">meta</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;id&#39;</span>
+
+        <span class="n">wavelengths</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;minor&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">sp</span><span class="o">.</span><span class="n">Spectra</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">wavelengths</span><span class="o">=</span><span class="n">wavelengths</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="n">tolerance</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="m3"><a class="viewcode-back" href="../../../library/data/io.html#libpysat.data.io.m3">[docs]</a><span class="k">def</span> <span class="nf">m3</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">tolerance</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">waxis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate DataFrame from spectral profiler data.</span>
+<span class="sd">    parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    f : str</span>
+<span class="sd">        file path to spectral profiler file</span>
+<span class="sd">    tolerance : Real</span>
+<span class="sd">                Tolerance for floating point index</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">wavelengths</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">io_moon_minerology_mapper</span><span class="o">.</span><span class="n">openm3</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">m3_array</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">ReadAsArray</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">hc</span><span class="o">.</span><span class="n">HCube</span><span class="p">(</span><span class="n">m3_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">waxis</span> <span class="o">=</span> <span class="n">waxis</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="n">tolerance</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2018 - PySAT Developers.
+      </li>
+      <li>
+      Last updated on Jan 31, 2018.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.6.6.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

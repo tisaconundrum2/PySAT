@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>transform.continuum — Continuum Removal &mdash; PySAT</title>
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../_static/css/spc-extend.css">
+    <link rel="stylesheet" href="../../_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/js/copybutton.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" >
+    <link rel="search" title="Search" href="../../search.html" >
+    <link rel="top" title="PySAT" href="../../index.html" >
+    <link rel="up" title="transform — Sprectral Data Representaiton" href="index.html" >
+    <link rel="next" title="transform.utils — Transformation Utility Funcs" href="utils.html" >
+    <link rel="prev" title="transform.stretch — Basic Image Stretching" href="stretch.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+	
+        <li class="active"><a href="../../index.html">PySAT</a></li>
+	
+          <li class="active"><a href="../index.html" >Library Reference</a></li>
+          <li class="active"><a href="index.html" accesskey="U"><code class="docutils literal"><span class="pre">transform</span></code> — Sprectral Data Representaiton</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="../../genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="../../py-modindex.html" title="Python Module Index"
+           >modules</a>
+      </li>
+      <li class="active">
+        <a href="utils.html" title="transform.utils — Transformation Utility Funcs"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="stretch.html" title="transform.stretch — Basic Image Stretching"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/favicon.png" alt="Logo">
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="stretch.html"
+                        title="previous chapter"><code class="docutils literal"><span class="pre">transform.stretch</span></code> — Basic Image Stretching</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="utils.html"
+                        title="next chapter"><code class="docutils literal"><span class="pre">transform.utils</span></code> — Transformation Utility Funcs</a></p>
+  <h3>This Page</h3>
+  <div>
+    <a href="../../_sources/library/transform/continuum.rst.txt"
+       rel="nofollow">Show Source</a>
+  </div>
+<div class="this-page-menu">
+  <a href="/scipy/docs/scipy-docs/library/transform/continuum.rst.rst">Edit page</a>
+</div>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="transform-continuum-continuum-removal">
+<h1><code class="xref py py-mod docutils literal"><span class="pre">transform.continuum</span></code> — Continuum Removal<a class="headerlink" href="#transform-continuum-continuum-removal" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="xref py py-mod docutils literal"><span class="pre">spectral.continuum</span></code> module</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.1.0.</span></p>
+</div>
+<span class="target" id="module-libpysat.transform.continuum"></span><dl class="function">
+<dt id="libpysat.transform.continuum.linear">
+<code class="descclassname">libpysat.transform.continuum.</code><code class="descname">linear</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em>, <em>axis=0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libpysat/transform/continuum.html#linear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.transform.continuum.linear" title="Permalink to this definition">¶</a></dt>
+<dd><p>perform linear continuum correction on a ndarray</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>data</strong> (<em>ndarray</em>) – The array to continuum correct</li>
+<li><strong>wv_array</strong> (<em>ndarray</em>) – array of wavelengths parallel to the wavelengths axis</li>
+<li><strong>axis</strong> (<em>int</em>) – The array axis along which the wavelengths exist</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2018 - PySAT Developers.
+      </li>
+      <li>
+      Last updated on Jan 31, 2018.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.6.6.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

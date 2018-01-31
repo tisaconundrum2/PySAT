@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>data.spectrum — Spectrum Data Structure &mdash; PySAT</title>
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../_static/css/spc-extend.css">
+    <link rel="stylesheet" href="../../_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/js/copybutton.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" >
+    <link rel="search" title="Search" href="../../search.html" >
+    <link rel="top" title="PySAT" href="../../index.html" >
+    <link rel="up" title="data — Base Data Structures" href="index.html" >
+    <link rel="next" title="data.spectra — Spectra Data Structure" href="spectra.html" >
+    <link rel="prev" title="data — Base Data Structures" href="index.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+	
+        <li class="active"><a href="../../index.html">PySAT</a></li>
+	
+          <li class="active"><a href="../index.html" >Library Reference</a></li>
+          <li class="active"><a href="index.html" accesskey="U"><code class="docutils literal"><span class="pre">data</span></code> — Base Data Structures</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="../../genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="../../py-modindex.html" title="Python Module Index"
+           >modules</a>
+      </li>
+      <li class="active">
+        <a href="spectra.html" title="data.spectra — Spectra Data Structure"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="index.html" title="data — Base Data Structures"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/favicon.png" alt="Logo">
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter"><code class="docutils literal"><span class="pre">data</span></code> — Base Data Structures</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="spectra.html"
+                        title="next chapter"><code class="docutils literal"><span class="pre">data.spectra</span></code> — Spectra Data Structure</a></p>
+  <h3>This Page</h3>
+  <div>
+    <a href="../../_sources/library/data/spectrum.rst.txt"
+       rel="nofollow">Show Source</a>
+  </div>
+<div class="this-page-menu">
+  <a href="/scipy/docs/scipy-docs/library/data/spectrum.rst.rst">Edit page</a>
+</div>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="data-spectrum-spectrum-data-structure">
+<h1><code class="xref py py-mod docutils literal"><span class="pre">data.spectrum</span></code> — Spectrum Data Structure<a class="headerlink" href="#data-spectrum-spectrum-data-structure" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="xref py py-mod docutils literal"><span class="pre">data.spectrum</span></code> module</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.1.0.</span></p>
+</div>
+<span class="target" id="module-libpysat.data.spectrum"></span><dl class="class">
+<dt id="libpysat.data.spectrum.Spectrum">
+<em class="property">class </em><code class="descclassname">libpysat.data.spectrum.</code><code class="descname">Spectrum</code><span class="sig-paren">(</span><em>*args</em>, <em>wavelengths=[]</em>, <em>metadata=[]</em>, <em>tolerance=0.5</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libpysat/data/spectrum.html#Spectrum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.data.spectrum.Spectrum" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="libpysat.data.spectrum.Spectrum.continuum_correction">
+<code class="descname">continuum_correction</code><span class="sig-paren">(</span><em>nodes=None</em>, <em>correction_nodes=[]</em>, <em>correction=&lt;function linear&gt;</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libpysat/data/spectrum.html#Spectrum.continuum_correction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.data.spectrum.Spectrum.continuum_correction" title="Permalink to this definition">¶</a></dt>
+<dd><p>apply linear correction to spectrum</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2018 - PySAT Developers.
+      </li>
+      <li>
+      Last updated on Jan 31, 2018.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.6.6.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

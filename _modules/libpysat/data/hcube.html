@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>libpysat.data.hcube &mdash; PySAT</title>
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/spc-extend.css">
+    <link rel="stylesheet" href="../../../_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/js/copybutton.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" >
+    <link rel="search" title="Search" href="../../../search.html" >
+    <link rel="top" title="PySAT" href="../../../index.html" >
+    <link rel="up" title="Module code" href="../../index.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+	
+        <li class="active"><a href="../../../index.html">PySAT</a></li>
+	
+          <li class="active"><a href="../../index.html" accesskey="U">Module code</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="../../../genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="../../../py-modindex.html" title="Python Module Index"
+           >modules</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/favicon.png" alt="Logo">
+            </a></p>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <h1>Source code for libpysat.data.hcube</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">reduce</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">singledispatch</span>
+
+<span class="kn">from</span> <span class="nn">numbers</span> <span class="k">import</span> <span class="n">Real</span>
+
+<span class="kn">from</span> <span class="nn">plio.io</span> <span class="k">import</span> <span class="n">io_moon_minerology_mapper</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">_index</span> <span class="k">as</span> <span class="n">_idx</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">io</span>
+
+<div class="viewcode-block" id="HCube"><a class="viewcode-back" href="../../../library/data/hcube.html#libpysat.data.hcube.HCube">[docs]</a><span class="k">class</span> <span class="nc">HCube</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A Numpy derived array used to store spectral and hyper-spectral images.</span>
+
+<span class="sd">    attributes</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    wavelengths : pandas.Float64Index</span>
+<span class="sd">                  The wavelengths store as a pandas index</span>
+
+<span class="sd">    get : _ArrayLocIndexer</span>
+<span class="sd">          Indexing object, maps wavelengths to indices allowing for access using</span>
+<span class="sd">          band labels</span>
+
+<span class="sd">    ----------</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">ndarray</span><span class="p">,</span> <span class="n">wavelengths</span><span class="o">=</span><span class="p">[],</span> <span class="n">waxis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=.</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">ndarray</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span> <span class="n">Real</span><span class="p">):</span>
+            <span class="n">obj</span><span class="o">.</span><span class="n">wavelengths</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Float64Index</span><span class="p">([</span><span class="n">wavelengths</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">obj</span><span class="o">.</span><span class="n">wavelengths</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Float64Index</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">)</span>
+
+        <span class="n">obj</span><span class="o">.</span><span class="n">_get</span> <span class="o">=</span> <span class="n">_idx</span><span class="o">.</span><span class="n">_ArrayLocIndexer</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">obj</span><span class="p">,</span> <span class="n">waxis</span><span class="o">=</span><span class="n">waxis</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="n">tolerance</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">obj</span>
+
+
+    <span class="k">def</span> <span class="nf">__array_finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">obj</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">wavelengths</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;wavelengths&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wavelengths</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;_get&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keys</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Override numpy&#39;s __getitem__ to crop axis labels if slicing accross the labeled axis (e.g</span>
+<span class="sd">        the axis representing labels)</span>
+
+<span class="sd">        parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        keys : object</span>
+<span class="sd">               a key or set of keys to access on</span>
+
+<span class="sd">        returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        : HCube</span>
+<span class="sd">          copy of the subset of the array</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO: Make this less garbage </span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="o">.</span><span class="n">waxis</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">):</span>
+                    <span class="c1"># wavelength is being sliced</span>
+                    <span class="n">wavelengths</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">wavelengths</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="o">.</span><span class="n">waxis</span><span class="p">]]</span>
+                    <span class="n">newarr</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">HCube</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="n">HCube</span><span class="p">(</span><span class="n">newarr</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="o">.</span><span class="n">waxis</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="o">.</span><span class="n">tolerance</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">newarr</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">HCube</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
+                        <span class="k">return</span> <span class="n">HCube</span><span class="p">(</span><span class="n">newarr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelengths</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="o">.</span><span class="n">waxis</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="o">.</span><span class="n">tolerance</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">return</span> <span class="n">HCube</span><span class="p">(</span><span class="n">newarr</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">wavelengths</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="o">.</span><span class="n">waxis</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="o">.</span><span class="n">tolerance</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="o">.</span><span class="n">waxis</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="c1"># wavelength is being sliced</span>
+                    <span class="n">wavelengths</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">wavelengths</span><span class="p">[</span><span class="n">keys</span><span class="p">]</span>
+                    <span class="n">newarr</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">HCube</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="n">HCube</span><span class="p">(</span><span class="n">newarr</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="o">.</span><span class="n">waxis</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="o">.</span><span class="n">tolerance</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">newarr</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">HCube</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="n">HCube</span><span class="p">(</span><span class="n">newarr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelengths</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="o">.</span><span class="n">waxis</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="o">.</span><span class="n">tolerance</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">HCube</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_m3</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">waxis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">io</span><span class="o">.</span><span class="n">m3</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">,</span> <span class="n">waxis</span><span class="p">)</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Access the array using labeled indices.</span>
+
+<span class="sd">        see also</span>
+<span class="sd">        --------</span>
+<span class="sd">        _SpectraDataFrame.get : label-wise access to a spectral dataframe</span>
+<span class="sd">        _ArrayLocIndexer : Enable label-wise access to numpy arrays</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">tolerance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">,</span> <span class="s1">&#39;_tolerance&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="o">.</span><span class="n">_tolerance</span> <span class="o">=</span> <span class="o">.</span><span class="mi">5</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="o">.</span><span class="n">_tolerance</span>
+
+
+    <span class="nd">@tolerance</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">tolerance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="o">.</span><span class="n">_tolerance</span> <span class="o">=</span> <span class="n">val</span>
+
+
+    <span class="k">def</span> <span class="nf">band</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">[:,:,</span><span class="n">n</span><span class="p">]</span></div>
+</pre></div>
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2018 - PySAT Developers.
+      </li>
+      <li>
+      Last updated on Jan 31, 2018.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.6.6.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

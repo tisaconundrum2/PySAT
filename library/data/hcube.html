@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>spectra.hcube — HyperSpectral Cube Data Structure &mdash; PySAT</title>
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../_static/css/spc-extend.css">
+    <link rel="stylesheet" href="../../_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/js/copybutton.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" >
+    <link rel="search" title="Search" href="../../search.html" >
+    <link rel="top" title="PySAT" href="../../index.html" >
+    <link rel="up" title="data — Base Data Structures" href="index.html" >
+    <link rel="next" title="data.io — Input/Output Algorithms" href="io.html" >
+    <link rel="prev" title="data.spectra — Spectra Data Structure" href="spectra.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+	
+        <li class="active"><a href="../../index.html">PySAT</a></li>
+	
+          <li class="active"><a href="../index.html" >Library Reference</a></li>
+          <li class="active"><a href="index.html" accesskey="U"><code class="docutils literal"><span class="pre">data</span></code> — Base Data Structures</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="../../genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="../../py-modindex.html" title="Python Module Index"
+           >modules</a>
+      </li>
+      <li class="active">
+        <a href="io.html" title="data.io — Input/Output Algorithms"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="spectra.html" title="data.spectra — Spectra Data Structure"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/favicon.png" alt="Logo">
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="spectra.html"
+                        title="previous chapter"><code class="docutils literal"><span class="pre">data.spectra</span></code> — Spectra Data Structure</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="io.html"
+                        title="next chapter"><code class="docutils literal"><span class="pre">data.io</span></code> — Input/Output Algorithms</a></p>
+  <h3>This Page</h3>
+  <div>
+    <a href="../../_sources/library/data/hcube.rst.txt"
+       rel="nofollow">Show Source</a>
+  </div>
+<div class="this-page-menu">
+  <a href="/scipy/docs/scipy-docs/library/data/hcube.rst.rst">Edit page</a>
+</div>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="spectra-hcube-hyperspectral-cube-data-structure">
+<h1><code class="xref py py-mod docutils literal"><span class="pre">spectra.hcube</span></code> — HyperSpectral Cube Data Structure<a class="headerlink" href="#spectra-hcube-hyperspectral-cube-data-structure" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="xref py py-mod docutils literal"><span class="pre">data.hcube</span></code> module</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.1.0.</span></p>
+</div>
+<span class="target" id="module-libpysat.data.hcube"></span><dl class="class">
+<dt id="libpysat.data.hcube.HCube">
+<em class="property">class </em><code class="descclassname">libpysat.data.hcube.</code><code class="descname">HCube</code><a class="reference internal" href="../../_modules/libpysat/data/hcube.html#HCube"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.data.hcube.HCube" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Numpy derived array used to store spectral and hyper-spectral images.</p>
+<dl class="attribute">
+<dt id="libpysat.data.hcube.HCube.wavelengths">
+<code class="descname">wavelengths</code><a class="headerlink" href="#libpysat.data.hcube.HCube.wavelengths" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>pandas.Float64Index</em> – The wavelengths store as a pandas index</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="libpysat.data.hcube.HCube.get">
+<code class="descname">get</code><a class="headerlink" href="#libpysat.data.hcube.HCube.get" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>_ArrayLocIndexer</em> – Indexing object, maps wavelengths to indices allowing for access using
+band labels</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">----------</code></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">get</code></dt>
+<dd><p>Access the array using labeled indices.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><code class="xref py py-obj docutils literal"><span class="pre">_SpectraDataFrame.get</span></code></dt>
+<dd>label-wise access to a spectral dataframe</dd>
+<dt><code class="xref py py-obj docutils literal"><span class="pre">_ArrayLocIndexer</span></code></dt>
+<dd>Enable label-wise access to numpy arrays</dd>
+</dl>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2018 - PySAT Developers.
+      </li>
+      <li>
+      Last updated on Jan 31, 2018.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.6.6.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

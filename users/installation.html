@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Installation &mdash; PySAT</title>
+    
+    <link rel="stylesheet" type="text/css" href="../_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../_static/css/spc-extend.css">
+    <link rel="stylesheet" href="../_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/js/copybutton.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" >
+    <link rel="search" title="Search" href="../search.html" >
+    <link rel="top" title="PySAT" href="../index.html" >
+    <link rel="up" title="&lt;no title&gt;" href="index.html" >
+    <link rel="next" title="Working With M3 to Generate Derived Products" href="tutorials/index.html" >
+    <link rel="prev" title="&lt;no title&gt;" href="index.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+	
+        <li class="active"><a href="../index.html">PySAT</a></li>
+	
+          <li class="active"><a href="index.html" accesskey="U">&lt;no title&gt;</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="../genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="../py-modindex.html" title="Python Module Index"
+           >modules</a>
+      </li>
+      <li class="active">
+        <a href="tutorials/index.html" title="Working With M3 to Generate Derived Products"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="index.html" title="&lt;no title&gt;"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/favicon.png" alt="Logo">
+            </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Installation</a><ul>
+<li><a class="reference internal" href="#using-anaconda-python">1. Using Anaconda Python</a></li>
+<li><a class="reference internal" href="#using-a-development-installation">Using a Development Installation</a></li>
+<li><a class="reference internal" href="#build-requirements">Build Requirements</a></li>
+<li><a class="reference internal" href="#runtime-requirements">Runtime Requirements</a></li>
+<li><a class="reference internal" href="#optional-requirements">Optional Requirements</a></li>
+<li><a class="reference internal" href="#using-the-qgis-plugin">Using the QGIS Plugin</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">&lt;no title&gt;</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="tutorials/index.html"
+                        title="next chapter">Working With M3 to Generate Derived Products</a></p>
+  <h3>This Page</h3>
+  <div>
+    <a href="../_sources/users/installation.rst.txt"
+       rel="nofollow">Show Source</a>
+  </div>
+<div class="this-page-menu">
+  <a href="/scipy/docs/scipy-docs/users/installation.rst.rst">Edit page</a>
+</div>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>We assume that you have a default Python environment that is already configured on your computer and you wish to install PySAT into that environment.  If you would like to create a [virtualenv](<a class="reference external" href="https://virtualenv.pypa.io/en/stable/">https://virtualenv.pypa.io/en/stable/</a>) or [conda environment](<a class="reference external" href="https://conda.io/docs/user-guide/tasks/manage-environments.html">https://conda.io/docs/user-guide/tasks/manage-environments.html</a>) to keep PySAT isolated from your main installation, please follow instructions at the linked resources.</p>
+<p>There are two ways that you can install PySAT into your environment.</p>
+<ol class="arabic simple">
+<li>Using Anaconda Python</li>
+<li>Using Development installation</li>
+</ol>
+<div class="section" id="using-anaconda-python">
+<h2>1. Using Anaconda Python<a class="headerlink" href="#using-anaconda-python" title="Permalink to this headline">¶</a></h2>
+<p>We suggest using [Anaconda Python](<a class="reference external" href="https://conda.io/docs/user-guide/install/index.html">https://conda.io/docs/user-guide/install/index.html</a>) and the Anaconda package management system for PySAT.  This installation method lets the Anaconda package manager handle all dependencies (installation of GDAL manually or via <cite>pip</cite> can be challenging).</p>
+<p>To install on Windows (64-bit), Linux (64-bit), and Mac OSX:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">usgs</span><span class="o">-</span><span class="n">astrogeology</span> <span class="n">pysat</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-a-development-installation">
+<h2>Using a Development Installation<a class="headerlink" href="#using-a-development-installation" title="Permalink to this headline">¶</a></h2>
+<p>Install the PySAT development version if either you wish to work at the cutting edge (with the associated risks) or you wish to develop for the PySAT project.</p>
+<p>Before beginning, uninstall the version of PySAT that you might already have installed:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">uninstall</span> <span class="n">pysat</span>
+</pre></div>
+</div>
+<p>Now clone the PySAT repository:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">USGS</span><span class="o">-</span><span class="n">Astrogeology</span><span class="o">/</span><span class="n">PySAT</span>
+</pre></div>
+</div>
+<p>Now checkout the <cite>dev</cite> (development) branch where we actively workon the project:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">dev</span>
+</pre></div>
+</div>
+<p>We use a <cite>dev</cite>/<cite>master</cite> model where active work is performed in the <cite>dev</cite> branch and then merged into the <cite>master</cite> branch at release time.  Next, install the necessary dependencies using conda and our <cite>environment.yml</cite> file.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">PySAT</span>
+<span class="n">conda</span> <span class="n">env</span> <span class="n">create</span> <span class="o">-</span><span class="n">f</span> <span class="n">environment</span><span class="o">.</span><span class="n">yml</span>
+<span class="n">source</span> <span class="n">activate</span> <span class="n">libpysat</span>
+</pre></div>
+</div>
+<p>Finally, install PySAT in development mode using:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">develop</span>
+</pre></div>
+</div>
+<p>This will soft link the PySAT directory (that was previously cloned) into the <cite>&lt;conda_home&gt;/envs/libpysat/lib/python3.x/site-packages</cite> directory.  You are not ready to develop PySAT.</p>
+</div>
+<div class="section" id="build-requirements">
+<h2>Build Requirements<a class="headerlink" href="#build-requirements" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="runtime-requirements">
+<h2>Runtime Requirements<a class="headerlink" href="#runtime-requirements" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="optional-requirements">
+<h2>Optional Requirements<a class="headerlink" href="#optional-requirements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a href="#id1"><span class="problematic" id="id2">`</span></a>Jupyter Notebook &lt;<a class="reference external" href="http://test-jupyter.readthedocs.io/en/rtd-theme/install.html">http://test-jupyter.readthedocs.io/en/rtd-theme/install.html</a>&gt;’ To be able to run our notebook examples</li>
+<li><cite>Matplotlib &lt;https://github.com/conda-forge/matplotlib-feedstock&gt;</cite> To be able to run the visualizations within the notebook examples</li>
+<li><cite>nbsphinx &lt;&gt;</cite> For compiling jupyter notebooks in the documentation</li>
+</ul>
+</div>
+<div class="section" id="using-the-qgis-plugin">
+<h2>Using the QGIS Plugin<a class="headerlink" href="#using-the-qgis-plugin" title="Permalink to this headline">¶</a></h2>
+<p>To be released in 2018.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2018 - PySAT Developers.
+      </li>
+      <li>
+      Last updated on Jan 31, 2018.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.6.6.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

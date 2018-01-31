@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>libpysat.derived.m3.supplemental &mdash; PySAT</title>
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/spc-extend.css">
+    <link rel="stylesheet" href="../../../../_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../../_static/js/copybutton.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" >
+    <link rel="search" title="Search" href="../../../../search.html" >
+    <link rel="top" title="PySAT" href="../../../../index.html" >
+    <link rel="up" title="Module code" href="../../../index.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+	
+        <li class="active"><a href="../../../../index.html">PySAT</a></li>
+	
+          <li class="active"><a href="../../../index.html" accesskey="U">Module code</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="../../../../genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="../../../../py-modindex.html" title="Python Module Index"
+           >modules</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../index.html">
+              <img class="logo" src="../../../../_static/favicon.png" alt="Logo">
+            </a></p>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <h1>Source code for libpysat.derived.m3.supplemental</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">libpysat.utils.utils</span> <span class="k">import</span> <span class="n">generic_func</span>
+<span class="kn">from</span> <span class="nn">libpysat.derived.m3</span> <span class="k">import</span> <span class="n">supplemental_funcs</span> <span class="k">as</span> <span class="n">sp_funcs</span>
+
+<div class="viewcode-block" id="curvature"><a class="viewcode-back" href="../../../../library/derived/m3/supplemental.html#libpysat.derived.m3.supplemental.curvature">[docs]</a><span class="k">def</span> <span class="nf">curvature</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Name: Curvature</span>
+<span class="sd">    Parameter:1 um Band Curvature</span>
+<span class="sd">    Formulation: (R749 + R1109) / (2* R909)</span>
+<span class="sd">    Rationale: Tompkins and Pieters</span>
+<span class="sd">    Bands: 749, R909, R1109</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">749</span><span class="p">,</span> <span class="mi">909</span><span class="p">,</span> <span class="mi">1109</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">sp_funcs</span><span class="o">.</span><span class="n">curv_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="fe_est"><a class="viewcode-back" href="../../../../library/derived/m3/supplemental.html#libpysat.derived.m3.supplemental.fe_est">[docs]</a><span class="k">def</span> <span class="nf">fe_est</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Name: FE_est</span>
+<span class="sd">    Parameter:Iron Estimate</span>
+<span class="sd">    Formulation:</span>
+<span class="sd">    y0 = 1.19</span>
+<span class="sd">    x0 = 0.08</span>
+<span class="sd">    FE_est = (17.427*(-1*(math.atan(((R949/R749)-y0)/(R749 - x0))))) - 7.565</span>
+<span class="sd">    Rationale: Iron estimate based on Lucey&#39;s Work</span>
+<span class="sd">    Bands: R749, R949</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">749</span><span class="p">,</span> <span class="mi">949</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">sp_funcs</span><span class="o">.</span><span class="n">fe_est_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="fe_mare_est"><a class="viewcode-back" href="../../../../library/derived/m3/supplemental.html#libpysat.derived.m3.supplemental.fe_mare_est">[docs]</a><span class="k">def</span> <span class="nf">fe_mare_est</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Name: FE_est_mare</span>
+<span class="sd">    Parameter:Iron Estimate Mare</span>
+<span class="sd">    Formulation: -137.97 * ((R749 * 0.9834)+((R949 / R749)*0.1813)) + 57.46</span>
+<span class="sd">    Rationale: Wilcox et al. JGR (2005), Clementine based</span>
+<span class="sd">    Bands: R749, R949</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">749</span><span class="p">,</span> <span class="mi">949</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">sp_funcs</span><span class="o">.</span><span class="n">fe_mare_est_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="luceyc_amat"><a class="viewcode-back" href="../../../../library/derived/m3/supplemental.html#libpysat.derived.m3.supplemental.luceyc_amat">[docs]</a><span class="k">def</span> <span class="nf">luceyc_amat</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Name: Lucey_OMAT</span>
+<span class="sd">    Parameter:Optimal Maturity - clementine Legacy; Using Adams Constants</span>
+<span class="sd">    Formulation: (((R749-0.01)**2)+((R949/R749)-1.26)**2)**(1/2)</span>
+<span class="sd">    Rationale: Based on Lucey et al., JGR (2000)</span>
+<span class="sd">    Bands: R749, R949</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">749</span><span class="p">,</span> <span class="mi">949</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">sp_funcs</span><span class="o">.</span><span class="n">luceyc_amat_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="luceyc_omat"><a class="viewcode-back" href="../../../../library/derived/m3/supplemental.html#libpysat.derived.m3.supplemental.luceyc_omat">[docs]</a><span class="k">def</span> <span class="nf">luceyc_omat</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Name: Lucey_OMAT</span>
+<span class="sd">    Parameter:Optimal Maturity - clementine Legacy; Using Clementine Constants</span>
+<span class="sd">    Formulation: (((R749-0.08)**2)+((R949/R749)-1.19)**2)**(1/2)</span>
+<span class="sd">    Rationale: Based on Lucey et al., JGR (2000)</span>
+<span class="sd">    Bands: R749, R949</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">749</span><span class="p">,</span> <span class="mi">949</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">sp_funcs</span><span class="o">.</span><span class="n">luceyc_omat_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="mare_omat"><a class="viewcode-back" href="../../../../library/derived/m3/supplemental.html#libpysat.derived.m3.supplemental.mare_omat">[docs]</a><span class="k">def</span> <span class="nf">mare_omat</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Name: Mare_OMAT</span>
+<span class="sd">    Parameter:Optical maturity Highlands</span>
+<span class="sd">    Formulation: (R749 * 0.1813) - ((R949/R749)*0.9834)</span>
+<span class="sd">    Rationale: Based on Wilcox et al. 2005 - untested</span>
+<span class="sd">    Bands: R749, R949</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">749</span><span class="p">,</span> <span class="mi">949</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">sp_funcs</span><span class="o">.</span><span class="n">mare_omat_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="tilt"><a class="viewcode-back" href="../../../../library/derived/m3/supplemental.html#libpysat.derived.m3.supplemental.tilt">[docs]</a><span class="k">def</span> <span class="nf">tilt</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Name: Tilt</span>
+<span class="sd">    Parameter: 1um tilt</span>
+<span class="sd">    Formulation: R909 - R1009</span>
+<span class="sd">    Rationale: Tompkins and Pieters</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">930</span><span class="p">,</span> <span class="mi">1009</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">sp_funcs</span><span class="o">.</span><span class="n">tilt_func</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2018 - PySAT Developers.
+      </li>
+      <li>
+      Last updated on Jan 31, 2018.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.6.6.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

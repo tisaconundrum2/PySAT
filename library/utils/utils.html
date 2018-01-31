@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>utils.utils — Utility Functions &mdash; PySAT</title>
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../_static/css/spc-extend.css">
+    <link rel="stylesheet" href="../../_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/js/copybutton.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" >
+    <link rel="search" title="Search" href="../../search.html" >
+    <link rel="top" title="PySAT" href="../../index.html" >
+    <link rel="up" title="utils — Utility Functions" href="index.html" >
+    <link rel="next" title="&lt;no title&gt;" href="../../developers/index.html" >
+    <link rel="prev" title="utils — Utility Functions" href="index.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+	
+        <li class="active"><a href="../../index.html">PySAT</a></li>
+	
+          <li class="active"><a href="../index.html" >Library Reference</a></li>
+          <li class="active"><a href="index.html" accesskey="U"><code class="docutils literal"><span class="pre">utils</span></code> — Utility Functions</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="../../genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="../../py-modindex.html" title="Python Module Index"
+           >modules</a>
+      </li>
+      <li class="active">
+        <a href="../../developers/index.html" title="&lt;no title&gt;"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="index.html" title="utils — Utility Functions"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/favicon.png" alt="Logo">
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter"><code class="docutils literal"><span class="pre">utils</span></code> — Utility Functions</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../../developers/index.html"
+                        title="next chapter">&lt;no title&gt;</a></p>
+  <h3>This Page</h3>
+  <div>
+    <a href="../../_sources/library/utils/utils.rst.txt"
+       rel="nofollow">Show Source</a>
+  </div>
+<div class="this-page-menu">
+  <a href="/scipy/docs/scipy-docs/library/utils/utils.rst.rst">Edit page</a>
+</div>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="utils-utils-utility-functions">
+<h1><code class="xref py py-mod docutils literal"><span class="pre">utils.utils</span></code> — Utility Functions<a class="headerlink" href="#utils-utils-utility-functions" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="xref py py-mod docutils literal"><span class="pre">utils.utils</span></code> module includes a collection of utility functions</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.1.0.</span></p>
+</div>
+<span class="target" id="module-libpysat.utils.utils"></span><dl class="function">
+<dt id="libpysat.utils.utils.checkbandnumbers">
+<code class="descclassname">libpysat.utils.utils.</code><code class="descname">checkbandnumbers</code><span class="sig-paren">(</span><em>bands</em>, <em>checkbands</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libpysat/utils/utils.html#checkbandnumbers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.utils.utils.checkbandnumbers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a list of input bands, check that the passed
+tuple contains those bands.</p>
+<p>In case of THEMIS, we check for band 9 as band 9 is the temperature
+band required to derive thermal temperature.  We also check for band 10
+which is required for TES atmosphere calculations.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>bands</strong> (<em>tuple</em>) – of bands in the input image</li>
+<li><strong>checkbands</strong> (<em>list</em>) – of bands to check against</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">True if the bands are present, else False</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.utils.utils.checkdeplaid">
+<code class="descclassname">libpysat.utils.utils.</code><code class="descname">checkdeplaid</code><span class="sig-paren">(</span><em>incidence</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libpysat/utils/utils.html#checkdeplaid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.utils.utils.checkdeplaid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an incidence angle, select the appropriate deplaid method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>incidence</strong> (<em>float</em>) – incidence angle extracted from the campt results.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.utils.utils.checkmonotonic">
+<code class="descclassname">libpysat.utils.utils.</code><code class="descname">checkmonotonic</code><span class="sig-paren">(</span><em>iterable</em>, <em>piecewise=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libpysat/utils/utils.html#checkmonotonic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.utils.utils.checkmonotonic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if a given iterable is monotonically increasing.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>iterable</strong> (<em>iterable</em>) – Any Python iterable object</li>
+<li><strong>piecewise</strong> (<em>boolean</em>) – If false, return a boolean for the entire iterable,
+else return a list with elementwise monotinicy checks</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>monotonic</strong> – A boolean list of all True if monotonic, or including
+an inflection point</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">bool/list</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.utils.utils.crossform">
+<code class="descclassname">libpysat.utils.utils.</code><code class="descname">crossform</code><span class="sig-paren">(</span><em>a</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libpysat/utils/utils.html#crossform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.utils.utils.crossform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the cross form, e.g. a in the cross product of a b.
+:param a: (3,) vector
+:type a: ndarray</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>a</strong> – (3,3)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.utils.utils.find_in_dict">
+<code class="descclassname">libpysat.utils.utils.</code><code class="descname">find_in_dict</code><span class="sig-paren">(</span><em>obj</em>, <em>key</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libpysat/utils/utils.html#find_in_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.utils.utils.find_in_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recursively find an entry in a dictionary</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>obj</strong> (<em>dict</em>) – The dictionary to search</li>
+<li><strong>key</strong> (<em>str</em>) – The key to find in the dictionary</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>item</strong> – The value from the dictionary</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">obj</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.utils.utils.find_nested_in_dict">
+<code class="descclassname">libpysat.utils.utils.</code><code class="descname">find_nested_in_dict</code><span class="sig-paren">(</span><em>data</em>, <em>key_list</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libpysat/utils/utils.html#find_nested_in_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.utils.utils.find_nested_in_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Traverse a list of keys into a dict.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>dict</em>) – The dictionary to be traversed</li>
+<li><strong>key_list</strong> (<em>list</em>) – The list of keys to be travered.  Keys are
+traversed in the order they are entered in
+the list</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>value</strong> – The value in the dict</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">object</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.utils.utils.generic_func">
+<code class="descclassname">libpysat.utils.utils.</code><code class="descname">generic_func</code><span class="sig-paren">(</span><em>data</em>, <em>wv_array</em>, <em>wavelengths</em>, <em>func=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libpysat/utils/utils.html#generic_func"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.utils.utils.generic_func" title="Permalink to this definition">¶</a></dt>
+<dd><p>Using some form of data and a wavelength array. Get the bands associated
+wtih each wavelength in wavelengths, create a subset of bands based off
+of those wavelengths then hand the subset to the function.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>ndarray</em>) – (x, y, z) 3 dimensional numpy array of a spectra image</li>
+<li><strong>wv_array</strong> (<em>iterable</em>) – A list of all possible wavelengths for a given spectral image</li>
+<li><strong>wavelengths</strong> (<em>iterable</em>) – List of wavelengths to use for the function</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Returns the result from the given function</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">func</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.utils.utils.get_band_numbers">
+<code class="descclassname">libpysat.utils.utils.</code><code class="descname">get_band_numbers</code><span class="sig-paren">(</span><em>wavelengths</em>, <em>wave_values</em>, <em>tolerance=0.01</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libpysat/utils/utils.html#get_band_numbers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.utils.utils.get_band_numbers" title="Permalink to this definition">¶</a></dt>
+<dd><p>This parses the wavelenth list,finds the mean wavelength closest to the
+provided wavelength, and returns the index of that value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>wavelengths</strong> (<em>list</em>) – A list of wavelengths, 0 based indexing</li>
+<li><strong>wave_values</strong> (<em>list</em>) – A list of input wavelengths to map to bands</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>bands</strong> – A variable length list of bands.  These are in the same order they are
+provided in.  Beware that altering the order will cause unexpected results.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.utils.utils.getnearest">
+<code class="descclassname">libpysat.utils.utils.</code><code class="descname">getnearest</code><span class="sig-paren">(</span><em>iterable</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libpysat/utils/utils.html#getnearest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.utils.utils.getnearest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given an iterable, get the index nearest to the input value</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>iterable</strong> (<em>iterable</em>) – An iterable to search</li>
+<li><strong>value</strong> (<em>int</em><em>, </em><em>float</em>) – The value to search for</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The index into the list</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">int</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.utils.utils.make_homogeneous">
+<code class="descclassname">libpysat.utils.utils.</code><code class="descname">make_homogeneous</code><span class="sig-paren">(</span><em>points</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libpysat/utils/utils.html#make_homogeneous"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.utils.utils.make_homogeneous" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Convert a set of points (n x dim array) to</dt>
+<dd>homogeneous coordinates.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>points</strong> (<em>ndarray</em>) – n x m array of points, where n is the number
+of points.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">n x m + 1 array of homogeneous points</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.utils.utils.method_singledispatch">
+<code class="descclassname">libpysat.utils.utils.</code><code class="descname">method_singledispatch</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libpysat/utils/utils.html#method_singledispatch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.utils.utils.method_singledispatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>New dispatch decorator that looks at the second argument to
+avoid self
+:param func: Function object to be dispatched
+:type func: Object
+:param Returns:
+:param wrapper: Wrapped function call chosen by the dispatcher
+:type wrapper: Object
+:param ———-:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.utils.utils.normalize_vector">
+<code class="descclassname">libpysat.utils.utils.</code><code class="descname">normalize_vector</code><span class="sig-paren">(</span><em>line</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libpysat/utils/utils.html#normalize_vector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.utils.utils.normalize_vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalize a standard form line</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>line</strong> (<em>ndarray</em>) – Standard form of a line (Ax + By + C = 0)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>line</strong> – The normalized line</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ndarray</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">normalize_vector</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">array([[ 0.88280225,  0.4697448 ,  0.11460811],</span>
+<span class="go">   [ 0.26090555,  0.96536433,  0.91648305],</span>
+<span class="go">   [ 0.58271501,  0.81267657,  0.30796395]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.utils.utils.remove_field_name">
+<code class="descclassname">libpysat.utils.utils.</code><code class="descname">remove_field_name</code><span class="sig-paren">(</span><em>a</em>, <em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libpysat/utils/utils.html#remove_field_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.utils.utils.remove_field_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a numpy structured array, remove a column and return
+a copy of the remainder of the array</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<em>ndarray</em>) – Numpy structured array</li>
+<li><strong>name</strong> (<em>str</em>) – of the index (column) to be removed</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>b</strong> – Numpy structured array with the ‘name’ column removed</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2018 - PySAT Developers.
+      </li>
+      <li>
+      Last updated on Jan 31, 2018.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.6.6.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

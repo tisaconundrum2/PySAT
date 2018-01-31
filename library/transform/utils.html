@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>transform.utils — Transformation Utility Funcs &mdash; PySAT</title>
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../_static/css/spc-extend.css">
+    <link rel="stylesheet" href="../../_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/js/copybutton.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" >
+    <link rel="search" title="Search" href="../../search.html" >
+    <link rel="top" title="PySAT" href="../../index.html" >
+    <link rel="up" title="transform — Sprectral Data Representaiton" href="index.html" >
+    <link rel="next" title="utils — Utility Functions" href="../utils/index.html" >
+    <link rel="prev" title="transform.continuum — Continuum Removal" href="continuum.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+	
+        <li class="active"><a href="../../index.html">PySAT</a></li>
+	
+          <li class="active"><a href="../index.html" >Library Reference</a></li>
+          <li class="active"><a href="index.html" accesskey="U"><code class="docutils literal"><span class="pre">transform</span></code> — Sprectral Data Representaiton</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="../../genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="../../py-modindex.html" title="Python Module Index"
+           >modules</a>
+      </li>
+      <li class="active">
+        <a href="../utils/index.html" title="utils — Utility Functions"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="continuum.html" title="transform.continuum — Continuum Removal"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/favicon.png" alt="Logo">
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="continuum.html"
+                        title="previous chapter"><code class="docutils literal"><span class="pre">transform.continuum</span></code> — Continuum Removal</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../utils/index.html"
+                        title="next chapter"><code class="docutils literal"><span class="pre">utils</span></code> — Utility Functions</a></p>
+  <h3>This Page</h3>
+  <div>
+    <a href="../../_sources/library/transform/utils.rst.txt"
+       rel="nofollow">Show Source</a>
+  </div>
+<div class="this-page-menu">
+  <a href="/scipy/docs/scipy-docs/library/transform/utils.rst.rst">Edit page</a>
+</div>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="transform-utils-transformation-utility-funcs">
+<h1><code class="xref py py-mod docutils literal"><span class="pre">transform.utils</span></code> — Transformation Utility Funcs<a class="headerlink" href="#transform-utils-transformation-utility-funcs" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="xref py py-mod docutils literal"><span class="pre">transform.utils</span></code> module</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.1.0.</span></p>
+</div>
+<span class="target" id="module-libpysat.transform.utils"></span><p>Created on Tue May 10 16:11:37 2016</p>
+<p>&#64;author: rbanderson</p>
+<dl class="function">
+<dt id="libpysat.transform.utils.band_area">
+<code class="descclassname">libpysat.transform.utils.</code><code class="descname">band_area</code><span class="sig-paren">(</span><em>spectrum</em>, <em>low_endmember=None</em>, <em>high_endmember=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libpysat/transform/utils.html#band_area"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.transform.utils.band_area" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the area under the curve between two endpoints where the
+y-value &lt;= 1.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.transform.utils.band_asymmetry">
+<code class="descclassname">libpysat.transform.utils.</code><code class="descname">band_asymmetry</code><span class="sig-paren">(</span><em>spectrum</em>, <em>low_endmember=None</em>, <em>high_endmember=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libpysat/transform/utils.html#band_asymmetry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.transform.utils.band_asymmetry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the symmetry of an absorption feature as</p>
+<p>(left_area - right_area) / total_area</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.transform.utils.band_minima">
+<code class="descclassname">libpysat.transform.utils.</code><code class="descname">band_minima</code><span class="sig-paren">(</span><em>spectrum</em>, <em>low_endmember=None</em>, <em>high_endmember=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libpysat/transform/utils.html#band_minima"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.transform.utils.band_minima" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given two end members, find the minimum observed value inclusively
+between them.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>spectrum</strong> (<em>pd.series</em>) – Pandas series</li>
+<li><strong>low_endmember</strong> (<em>float</em>) – The low wavelength</li>
+<li><strong>high_endmember</strong> (<em>float</em>) – The high wavelength</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>minidx</strong> (<em>int</em>) – The wavelength of the minimum value</li>
+<li><strong>minvalue</strong> (<em>float</em>) – The observed minimal value</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.transform.utils.boxcar">
+<code class="descclassname">libpysat.transform.utils.</code><code class="descname">boxcar</code><span class="sig-paren">(</span><em>y</em>, <em>window_size=3</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libpysat/transform/utils.html#boxcar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.transform.utils.boxcar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Smooth the input vector using the mean of the neighboring values,
+where neighborhood size is defined by the window.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>y</strong> (<em>array</em>) – The vector to be smoothed.</li>
+<li><strong>window_size</strong> (<em>int</em>) – An odd integer describing the window size.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The smoothed array.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">array</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.transform.utils.gaussian">
+<code class="descclassname">libpysat.transform.utils.</code><code class="descname">gaussian</code><span class="sig-paren">(</span><em>y</em>, <em>window_size=3</em>, <em>sigma=2</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libpysat/transform/utils.html#gaussian"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.transform.utils.gaussian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply a gaussian filter to smooth the input vector</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>y</strong> (<em>array</em>) – The input array</li>
+<li><strong>window_size</strong> (<em>int</em>) – An odd integer describing the size of the filter.</li>
+<li><strong>sigma</strong> (<em>float</em>) – The numver of standard deviation</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.transform.utils.get_noise">
+<code class="descclassname">libpysat.transform.utils.</code><code class="descname">get_noise</code><span class="sig-paren">(</span><em>Data</em>, <em>niter=3</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libpysat/transform/utils.html#get_noise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.transform.utils.get_noise" title="Permalink to this definition">¶</a></dt>
+<dd><p>;+
+; NAME:
+;     GET_NOISE
+;
+; PURPOSE:
+;    Find the standard deviation of a white gaussian noise in the data.
+;
+; CALLING SEQUENCE:
+;   output=GET_NOISE(Data)
+;
+; INPUTS:
+;   Data – IDL array
+;
+; OPTIONAL INPUT PARAMETERS:
+;   none
+;
+; KEYED INPUTS:
+;   Niter –scalar: number of iterations for k-sigma clipping
+;                   default is 3.
+;
+; OUTPUTS:
+;    output
+;
+; MODIFICATION HISTORY:
+;    17-Jan-1996 JL Starck written with template_gen
+;-  Translated to Python by Ryan Anderson Nov 2014</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="libpysat.transform.utils.sigma_clip">
+<code class="descclassname">libpysat.transform.utils.</code><code class="descname">sigma_clip</code><span class="sig-paren">(</span><em>Data</em>, <em>sigma_clip=3.0</em>, <em>niter=2.0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/libpysat/transform/utils.html#sigma_clip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libpysat.transform.utils.sigma_clip" title="Permalink to this definition">¶</a></dt>
+<dd><p>;+
+; NAME:
+;       sigma_clip
+;
+; PURPOSE:
+;       return the sigma obtained by k-sigma. Default sigma_clip value is 3.
+;       if mean is set, the mean (taking into account outsiders) is returned.
+;
+; CALLING SEQUENCE:
+;   output=sigma_clip(Data, sigma_clip=sigma_clip, mean=mean)
+;
+; INPUTS:
+;   Data – IDL array: data
+;
+; OPTIONAL INPUT PARAMETERS:
+;   none
+;
+; KEYED INPUTS:
+;   sigma_clip – float : sigma_clip value
+;
+; KEYED OUTPUTS:
+;   mean – float : mean value
+;
+; OUTPUTS:
+;    output
+;
+; EXAMPLE:
+;    output_sigma = sigma_clip(Image, sigma_clip=2.5)
+;
+; MODIFICATION HISTORY:
+;    25-Jan-1995 JL Starck written with template_gen
+;-</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2018 - PySAT Developers.
+      </li>
+      <li>
+      Last updated on Jan 31, 2018.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.6.6.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

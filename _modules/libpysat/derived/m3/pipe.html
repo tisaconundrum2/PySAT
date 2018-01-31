@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>libpysat.derived.m3.pipe &mdash; PySAT</title>
+    
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/spc-extend.css">
+    <link rel="stylesheet" href="../../../../_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../../_static/js/copybutton.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" >
+    <link rel="search" title="Search" href="../../../../search.html" >
+    <link rel="top" title="PySAT" href="../../../../index.html" >
+    <link rel="up" title="Module code" href="../../../index.html" > 
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="header">
+    </div>
+  </div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+	
+        <li class="active"><a href="../../../../index.html">PySAT</a></li>
+	
+          <li class="active"><a href="../../../index.html" accesskey="U">Module code</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="../../../../genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="../../../../py-modindex.html" title="Python Module Index"
+           >modules</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../index.html">
+              <img class="logo" src="../../../../_static/favicon.png" alt="Logo">
+            </a></p>
+
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <h1>Source code for libpysat.derived.m3.pipe</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">libpysat.derived.m3</span> <span class="k">import</span> <span class="n">pipe_funcs</span> <span class="k">as</span> <span class="n">pf</span>
+<span class="kn">from</span> <span class="nn">libpysat.utils.utils</span> <span class="k">import</span> <span class="n">generic_func</span>
+<span class="kn">from</span> <span class="nn">libpysat.utils.utils</span> <span class="k">import</span> <span class="n">get_band_numbers</span>
+
+<div class="viewcode-block" id="bd620"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.bd620">[docs]</a><span class="k">def</span> <span class="nf">bd620</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">419</span><span class="p">,</span> <span class="mi">619</span><span class="p">,</span> <span class="mi">749</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">bd620_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="bd1900"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.bd1900">[docs]</a><span class="k">def</span> <span class="nf">bd1900</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1408</span><span class="p">,</span> <span class="mi">1898</span><span class="p">,</span> <span class="mi">2498</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">bd1900_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="bd2300"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.bd2300">[docs]</a><span class="k">def</span> <span class="nf">bd2300</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1578</span><span class="p">,</span> <span class="mi">2298</span><span class="p">,</span> <span class="mi">2578</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">bd2300_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="h2o1"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.h2o1">[docs]</a><span class="k">def</span> <span class="nf">h2o1</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1578</span><span class="p">,</span> <span class="mi">2538</span><span class="p">,</span> <span class="mi">2978</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">h2o1_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="iralbedo"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.iralbedo">[docs]</a><span class="k">def</span> <span class="nf">iralbedo</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1578</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">iralbedo_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="mafic_abs"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.mafic_abs">[docs]</a><span class="k">def</span> <span class="nf">mafic_abs</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">749</span><span class="p">,</span> <span class="mi">950</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">mafic_abs_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="omh"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.omh">[docs]</a><span class="k">def</span> <span class="nf">omh</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">749</span><span class="p">,</span> <span class="mi">889</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">omh_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="olindex"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.olindex">[docs]</a><span class="k">def</span> <span class="nf">olindex</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">650</span><span class="p">,</span> <span class="mi">860</span><span class="p">,</span> <span class="mi">1047</span><span class="p">,</span> <span class="mi">1230</span><span class="p">,</span> <span class="mi">1750</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">olindex_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="oneum_min"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.oneum_min">[docs]</a><span class="k">def</span> <span class="nf">oneum_min</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="oneum_slope"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.oneum_slope">[docs]</a><span class="k">def</span> <span class="nf">oneum_slope</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">699</span><span class="p">,</span> <span class="mi">1579</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">oneum_slope_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="reflectance1"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.reflectance1">[docs]</a><span class="k">def</span> <span class="nf">reflectance1</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">540</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">reflectance_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="reflectance2"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.reflectance2">[docs]</a><span class="k">def</span> <span class="nf">reflectance2</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">749</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">reflectance_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="reflectance3"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.reflectance3">[docs]</a><span class="k">def</span> <span class="nf">reflectance3</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2778</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">reflectance_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="reflectance4"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.reflectance4">[docs]</a><span class="k">def</span> <span class="nf">reflectance4</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1578</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">reflectance_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="thermal_ratio"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.thermal_ratio">[docs]</a><span class="k">def</span> <span class="nf">thermal_ratio</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2538</span><span class="p">,</span> <span class="mi">2978</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">thermal_ratio_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="thermal_slope"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.thermal_slope">[docs]</a><span class="k">def</span> <span class="nf">thermal_slope</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2538</span><span class="p">,</span> <span class="mi">2978</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">thermal_slope_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="twoum_ratio"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.twoum_ratio">[docs]</a><span class="k">def</span> <span class="nf">twoum_ratio</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1578</span><span class="p">,</span> <span class="mi">2538</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">twoum_ratio_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="twoum_slope"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.twoum_slope">[docs]</a><span class="k">def</span> <span class="nf">twoum_slope</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1578</span><span class="p">,</span> <span class="mi">2538</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">twoum_slope_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="uvvis"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.uvvis">[docs]</a><span class="k">def</span> <span class="nf">uvvis</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">419</span><span class="p">,</span> <span class="mi">749</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">uvvis_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="visslope"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.visslope">[docs]</a><span class="k">def</span> <span class="nf">visslope</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">419</span><span class="p">,</span> <span class="mi">749</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">visslope_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="visuv"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.visuv">[docs]</a><span class="k">def</span> <span class="nf">visuv</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">419</span><span class="p">,</span> <span class="mi">749</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">visuv_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="visnir"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.visnir">[docs]</a><span class="k">def</span> <span class="nf">visnir</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">699</span><span class="p">,</span> <span class="mi">1579</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">visnir_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="calc_bdi_band"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.calc_bdi_band">[docs]</a><span class="k">def</span> <span class="nf">calc_bdi_band</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">iteration</span><span class="p">,</span> <span class="n">initial_band</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    iteration : int</span>
+<span class="sd">                Number of steps to add to the new band calculation</span>
+
+<span class="sd">    initial_band : int</span>
+<span class="sd">                   Initial band to use to calculate the new band</span>
+
+<span class="sd">    step : int</span>
+<span class="sd">           Length between bands to calculate</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">initial_band</span> <span class="o">+</span> <span class="p">(</span><span class="n">step</span> <span class="o">*</span> <span class="n">iteration</span><span class="p">)</span>
+    <span class="n">y_idx</span> <span class="o">=</span> <span class="n">get_band_numbers</span><span class="p">(</span><span class="n">wv_array</span><span class="p">,</span> <span class="p">[</span><span class="n">y</span><span class="p">])</span>
+    <span class="n">wavelengths</span> <span class="o">=</span> <span class="p">[</span><span class="n">wv_array</span><span class="p">[</span><span class="n">y_idx</span> <span class="o">-</span> <span class="mi">3</span><span class="p">],</span> <span class="n">y</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">[</span><span class="n">y_idx</span> <span class="o">+</span> <span class="mi">3</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="n">generic_func</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">wavelengths</span><span class="p">,</span> <span class="n">func</span> <span class="o">=</span> <span class="n">pf</span><span class="o">.</span><span class="n">bdi_func</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="bdi_generic"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.bdi_generic">[docs]</a><span class="k">def</span> <span class="nf">bdi_generic</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">upper_limit</span><span class="p">,</span> <span class="n">initial_band</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    upper_limit : int</span>
+<span class="sd">                  Upper limit on the number of wavelengths to be used</span>
+
+<span class="sd">    initial_band : int</span>
+<span class="sd">                   The band to use as a starting point to extract the other</span>
+<span class="sd">                   0 to upper_limit bands</span>
+<span class="sd">    step : int</span>
+<span class="sd">           The step size inbetween the 0 to upper limit bands</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">limit</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper_limit</span><span class="p">)</span>
+    <span class="n">band_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">calc_bdi_band</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">initial_band</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">limit</span><span class="p">]</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">band_list</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="bdi1000"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.bdi1000">[docs]</a><span class="k">def</span> <span class="nf">bdi1000</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">bdi_generic</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">789</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="bdi2000"><a class="viewcode-back" href="../../../../library/derived/m3/pipe.html#libpysat.derived.m3.pipe.bdi2000">[docs]</a><span class="k">def</span> <span class="nf">bdi2000</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : ndarray</span>
+<span class="sd">           (n,m,p) array</span>
+
+<span class="sd">    wv_array : ndarray</span>
+<span class="sd">               (n,1) array of wavelengths that correspond to the p</span>
+<span class="sd">               dimension of the data array</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">     : ndarray</span>
+<span class="sd">       the processed ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">bdi_generic</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wv_array</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">1658</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2018 - PySAT Developers.
+      </li>
+      <li>
+      Last updated on Jan 31, 2018.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.6.6.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>
